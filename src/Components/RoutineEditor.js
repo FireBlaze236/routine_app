@@ -41,13 +41,16 @@ const RoutineEditor = () => {
     const removeSlotListener = (event) =>
     {
         event.preventDefault();
-        if(slotData.length == 0) return;
+        
         setSlotData( (data) => {
             const res = data.filter((s) =>
             {
                 return (s.slotID != event.target.value)
             });
-            setLastEnd(res[res.length-1].endTime);
+            if(res.length != 0)
+                setLastEnd(res[res.length-1].endTime);
+            else
+                setLastEnd("");
             return res;
         });
     }
