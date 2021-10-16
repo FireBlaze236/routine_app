@@ -1,6 +1,7 @@
 import { useState } from "react";
 import RoutineSlotHeader from "./RoutineSlotHeader";
 import RoutineCell from "./RoutineCell";
+import "./RoutineEditor.css";
 
 const weekDays = [
     "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
@@ -9,7 +10,8 @@ const weekDays = [
 const slotDataObject = {
     "slotID": null, 
     "startTime": null, 
-    "endTime": null
+    "endTime": null,
+    "status:": false
 };
 
 const initialSlotData = [];
@@ -27,9 +29,14 @@ const RoutineEditor = () => {
         {
             setSlotData( (data) => {
                 let newSlotData = JSON.parse(JSON.stringify(slotDataObject));
+
+                // THE DATA 
                 newSlotData.startTime = startTime;
                 newSlotData.endTime = endTime;
                 newSlotData.slotID = data.length;
+                newSlotData.status = false;
+
+
                 var res = [...data, newSlotData];
                 setLastEnd(res[res.length-1].endTime);
                 return res;
@@ -45,9 +52,9 @@ const RoutineEditor = () => {
         setSlotData( (data) => {
             const res = data.filter((s) =>
             {
-                return (s.slotID != event.target.value)
+                return (s.slotID !== event.target.value)
             });
-            if(res.length != 0)
+            if(res.length !== 0)
                 setLastEnd(res[res.length-1].endTime);
             else
                 setLastEnd("");
