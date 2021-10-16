@@ -1,23 +1,28 @@
+import { useState } from "react";
 import "./RoutineCell.css";
-
 
 
 const RoutineCell = ({data})=>
 {
+    const [cellState, setCellState] = useState(data.status);
+
+    const cellStateToggleListener = (e)=>{
+        setCellState(!cellState);
+    }
+
     return(
+        
         <td>
             <div className= "routine_cell">
-            
-
-            <input type="text" placeHolder="Course Name"/>
-            <input type="text" placeHolder="Course Code"/>
-            <input type="text" placeHolder="Course Teacher"/>
+            <input type="text" />
+            <input type="text" />
+            <input type="text" />
                 <div id="status_buttons">
                 {  
-                data.status && <p> Cancelled </p> ||
-                !data.status && <p> Active </p>
+                (cellState && <p style={{"color": "red" }}> Cancelled </p>) ||
+                (!cellState && <p> Active </p>)
                 }
-                <button> X </button>
+                <button onClick={cellStateToggleListener}> X </button>
                 </div>
             </div>
         </td>

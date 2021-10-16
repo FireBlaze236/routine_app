@@ -1,4 +1,19 @@
 
+.routine_editor{
+    background-color: #191A19;
+    color: white;
+}
+
+.slot_maker{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    
+    padding: 2px 2px 2px 2px;
+}
+
+
+
 .routine_table{
     border: solid;
     border-radius: 2px;
